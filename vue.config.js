@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: 'a-wall/',
+  publicPath: '/a-wall/',
   // assetsDir: 'a-wall/'
 };
