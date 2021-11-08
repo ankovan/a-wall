@@ -8,12 +8,12 @@
       :disabled="isLoading && isError"
       @createPost="createPost($event)"
     />
-    <div id="error" v-show="!isLoading && isError">
+    <div id="error" class="notes" v-show="!isLoading && isError">
       <p>Server is not responding. Try later.</p>
     </div>
     <Posts :posts="posts" />
     <Loading v-show="isLoading" />
-    <div id="no-posts" v-show="!isLoading && !isError">
+    <div id="no-posts" class="notes" v-show="!isLoading && !isError">
       <p v-if="!posts.length">There're no posts yet!</p>
     </div>
   </div>
@@ -27,7 +27,7 @@
     font-size: 1.5rem;
     color: #ffc145;
   }
-  #no-posts {
+  .notes {
     color: #ffc145;
     display: flex;
     justify-content: center;
