@@ -19,7 +19,12 @@
           placeholder="Enter your message here..."
         />
       </div>
-      <input type="submit" class="submit-button" value="Submit" />
+      <input
+        :disabled="disabled"
+        type="submit"
+        class="submit-button"
+        value="Submit"
+      />
     </form>
   </div>
 </template>
@@ -67,6 +72,9 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
+  props: {
+    disabled: Boolean,
+  },
   data() {
     return {
       username: "",
