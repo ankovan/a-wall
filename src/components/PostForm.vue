@@ -29,6 +29,7 @@
   padding-top: 2rem;
   padding-bottom: 1rem;
   background-color: #4c4f69;
+  min-width: 200px;
   width: 16.6666%;
   margin-left: auto;
   margin-right: auto;
