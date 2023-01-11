@@ -39,8 +39,12 @@
 <script>
 import Posts from "@/components/Posts";
 import PostForm from "@/components/PostForm";
-import axios from "axios";
 import Loading from "@/components/Loading";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.VUE_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.VUE_APP_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default {
   components: {
@@ -61,10 +65,14 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get(
-        "https://rocky-sands-62747.herokuapp.com/posts"
-      );
-      this.posts = response.data.results;
+      let { data, error } = await supabase
+        .from("posts")
+        .select(`*`)
+        .order("created_at", { ascending: false });
+      if (error) {
+        throw error;
+      }
+      this.posts = data;
     } catch (error) {
       this.isError = true;
     }
@@ -74,7 +82,13 @@ export default {
     async createPost(post) {
       this.posts.unshift(post);
       try {
-        await axios.post("https://rocky-sands-62747.herokuapp.com/posts", post);
+        let { error } = await supabase.from("posts").insert({
+          username: post.username,
+          message: post.message,
+        });
+        if (error) {
+          throw error;
+        }
       } catch (error) {
         this.isError = true;
       }

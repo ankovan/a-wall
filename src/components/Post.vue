@@ -1,6 +1,6 @@
 <template>
   <div class="post">
-    <div class="date">{{ moment(post.date, "DD.MM.YYYY hh:mm") }}</div>
+    <div class="date">{{ moment(post.created_at, "DD.MM.YYYY hh:mm") }}</div>
     <div class="username">{{ post.username }}</div>
     <div class="text">{{ post.message }}</div>
   </div>
