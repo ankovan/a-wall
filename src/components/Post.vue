@@ -5,6 +5,7 @@
     <div class="text">{{ post.message }}</div>
   </div>
 </template>
+
 <style lang="less" scoped>
 .post {
   border: solid 2px #4c4f69;
